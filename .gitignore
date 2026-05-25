@@ -1,0 +1,12 @@
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+dist/
+build/
+out/
+
+data/wizard.db
+data/*.db
+data/*.sqlite

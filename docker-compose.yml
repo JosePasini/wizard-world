@@ -1,0 +1,17 @@
+services:
+  graphql-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wizard-edge-challenge
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - DB_PATH=/app/data/wizard.db
+    volumes:
+      - wizard_db_data:/app/data
+    restart: always
+
+volumes:
+  wizard_db_data:
