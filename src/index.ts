@@ -10,6 +10,7 @@ import { resolvers } from './graphql/resolvers.js';
 async function main() {
   try {
     console.log('--- SYSTEM: Starting application services... ---');
+    const port = Number(process.env.PORT ?? 4000);
     
     await initDatabase();
     await runBootstrap();
@@ -28,7 +29,7 @@ async function main() {
     });
 
     const { url } = await startStandaloneServer(server, {
-      listen: { port: 4000 },
+      listen: { port },
     });
 
     console.log(`\n🚀  --- SERVER RUNNING: GraphQL Sandbox ready at ${url} --- 🚀\n`);

@@ -55,6 +55,12 @@ export async function runBootstrap(): Promise<void> {
         if (!ing?.name) continue;
 
         const cleanIngredientName = normalizeIngredient(ing.name);
+        if (!cleanIngredientName) continue;
+
+        await dbRun(
+          'INSERT OR IGNORE INTO ingredients (name) VALUES (?)',
+          [cleanIngredientName]
+        );
 
         await dbRun(
           'INSERT OR IGNORE INTO elixir_ingredients (elixir_id, ingredient_name) VALUES (?, ?)',

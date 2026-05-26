@@ -1,9 +1,13 @@
 export const typeDefs = `#graphql
+  type Ingredient {
+    name: String!
+  }
+
   type Elixir {
     id: ID!
     name: String!
     effect: String
-    ingredients: [String!]!
+    ingredients: [Ingredient!]!
   }
 
   type Query {

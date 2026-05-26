@@ -1,5 +1,12 @@
 import { globalCache, normalizeIngredient } from '../cache/elixirCache.js';
 
+interface CachedElixirParent {
+  id: string;
+  name: string;
+  effect: string | null;
+  ingredients: string[];
+}
+
 export const resolvers = {
   Query: {
     canBrewElixirs: (_parent: unknown, args: { ingredients?: string[] }) => {
@@ -11,5 +18,9 @@ export const resolvers = {
 
       return globalCache.getBrewable(sanitizedInventory);
     },
+  },
+  Elixir: {
+    ingredients: (parent: CachedElixirParent) =>
+      parent.ingredients.map((name) => ({ name })),
   },
 };
